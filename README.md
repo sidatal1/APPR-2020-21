@@ -5,10 +5,12 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 * [![Shiny](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/jaanos/APPR-2020-21/master?urlpath=shiny/APPR-2020-21/projekt.Rmd) Shiny
 * [![RStudio](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/jaanos/APPR-2020-21/master?urlpath=rstudio) RStudio
 
-## Tematika
+## Stopnja brezposelnosti v Sloveniji in drugih evropskih državah
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal.
-Tukaj boste napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+Pri projektni nalogi bom primerjala stopnjo brezposelnosti v Sloveniji in ostalih evropskih državah. Brezposelnost bom analizirala glede na
+starost previvalstva ter spol. Na koncu bom še preverila brezposelnost v Sloveniji glede na regije.
+
+
 
 ## Program
 
