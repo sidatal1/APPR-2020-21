@@ -7,9 +7,21 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 
 ## Stopnja brezposelnosti v Sloveniji in drugih evropskih državah
 
-Pri projektni nalogi bom primerjala stopnjo brezposelnosti v Sloveniji in ostalih evropskih državah. Brezposelnost bom analizirala glede na
-starost ter spol prebivalstva. Na koncu bom še preverila brezposelnost v Sloveniji glede na regije.
+Pri projektni nalogi bom primerjala stopnjo brezposelnosti v Sloveniji in ostalih evropskih državah glede na spol in stopnjo izobrazbe, starostna doba bo pa med 20. in 64. letom.
+Preverila bom, kako se je stopnja brezposelnosti spreminjala skozi leta in, ali je letošnja epidemija kako vplivala na brezposelnost. Na koncu si bom tudi pogledala raven brezposelnosti v Sloveniji, in sicer po spolu, statističnih regijah in stopnji izobrazbe.
 
+* Tabela 1: leto, država, spol, stopnja brezposelnosti
+
+* Tabela 2: leto, država, stopnja izobrazbe, stopnja brezposelnosti
+
+* Tabela 3: leto, statistična regija, spol, stopnja izobrazbe, stopnja brezposelnosti (SLOVENIJA)
+
+
+VIRI:
+
+* https://ec.europa.eu/eurostat/databrowser/view/LFSQ_URGAED__custom_192272/default/table?lang=en
+
+* https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0762112S.px/table/tableViewLayout2/
 
 
 ## Program
