@@ -10,26 +10,29 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 Pri projektni nalogi bom primerjala stopnjo brezposelnosti od leta 2008 do leta 2019 v Sloveniji in ostalih evropskih državah glede na spol in stopnjo izobrazbe, starostna doba bo pa med 20. in 64. letom.
 Pogledala bom, kako je v Sloveniji na stopnjo brezposelnosti vplivala stopnja izobrazbe ter kolikšna je brezposelnost glede na čas trajanja iskanja dela.
 
- Tabela 1: 
-         * leto
-         * država
-         * spol
-         * stopnja izobazbe
-         * stopnja brezposelnosti
+ Tabela 1: Stopnja brezposelnosti v evropskih državah
+ 
+* leto
+* država
+* spol
+* stopnja izobazbe
+* stopnja brezposelnosti
 
- Tabela 2: 
-         * leto
-         * kohezijska regija
-         * stopnja izobrazbe
-         * spol
-         * stopnja brezposelnosti
+ Tabela 2: Stopnja brezposelnosti glede na stopnjo izobrazbe
+ 
+* leto
+* kohezijska regija
+* stopnja izobrazbe
+* spol
+* stopnja brezposelnosti
 
- Tabela 3: 
-         * leto
-         * kohezijska regija
-         * spol
-         * čas trajanja iskanja dela
-         * stopnja brezposelnosti 
+ Tabela 3: Stopnja brezposelnosti glede na čas iskanja zaposlitve
+ 
+* leto
+* kohezijska regija
+* spol
+* čas trajanja iskanja dela
+* stopnja brezposelnosti 
 
 
 VIRI:
