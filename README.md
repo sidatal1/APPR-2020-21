@@ -7,21 +7,36 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 
 ## Stopnja brezposelnosti v Sloveniji in drugih evropskih državah
 
-Pri projektni nalogi bom primerjala stopnjo brezposelnosti v Sloveniji in ostalih evropskih državah glede na spol in stopnjo izobrazbe, starostna doba bo pa med 20. in 64. letom.
-Preverila bom, kako se je stopnja brezposelnosti spreminjala skozi leta in, ali je letošnja epidemija kako vplivala na brezposelnost. Na koncu si bom tudi pogledala raven brezposelnosti v Sloveniji, in sicer po spolu, statističnih regijah in stopnji izobrazbe.
+Pri projektni nalogi bom primerjala stopnjo brezposelnosti od leta 2008 do leta 2019 v Sloveniji in ostalih evropskih državah glede na spol in stopnjo izobrazbe, starostna doba bo pa med 20. in 64. letom.
+Pogledala bom, kako je v Sloveniji na stopnjo brezposelnosti vplivala stopnja izobrazbe ter kolikšna je brezposelnost glede na čas trajanja iskanja dela.
 
-* Tabela 1: leto, država, spol, stopnja brezposelnosti
+ Tabela 1: 
+         * leto
+         * država
+         * spol
+         * stopnja izobazbe
+         * stopnja brezposelnosti
 
-* Tabela 2: leto, država, stopnja izobrazbe, stopnja brezposelnosti
+ Tabela 2: 
+         * leto
+         * kohezijska regija
+         * stopnja izobrazbe
+         * spol
+         * stopnja brezposelnosti
 
-* Tabela 3: leto, statistična regija, spol, stopnja izobrazbe, stopnja brezposelnosti (SLOVENIJA)
+ Tabela 3: 
+         * leto
+         * kohezijska regija
+         * spol
+         * čas trajanja iskanja dela
+         * stopnja brezposelnosti 
 
 
 VIRI:
 
-* https://ec.europa.eu/eurostat/databrowser/view/LFSQ_URGAED__custom_192272/default/table?lang=en
-
+* https://appsso.eurostat.ec.europa.eu/nui/submitViewTableAction.do
 * https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0762112S.px/table/tableViewLayout2/
+* https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0762111S.px/table/tableViewLayout2/
 
 
 ## Program
