@@ -4,8 +4,8 @@
 # 1.tabela
 
 uvoz_1 <- read_csv("podatki/1.tabela1.csv",
+                   locale = locale(encoding = "UTF-8"),
                    skip = 1,
-                   na = c(":"), 
                    col_names = "stolpec") %>% 
                    separate(stolpec, c("Leto1", "Spol", "Izobrazba", "Starost", "Enota", "Vrednost"), '","' ) %>%
                    separate("Leto1", c("Leto", "Drzava"), ",")  %>% 
@@ -19,8 +19,12 @@ uvoz_1$Leto <- as.integer(uvoz_1$Leto)
 uvoz_1$Drzava <- as.factor(uvoz_1$Drzava) 
 uvoz_1$Spol <- as.factor(uvoz_1$Spol) 
 uvoz_1$Izobrazba <- as.factor(uvoz_1$Izobrazba)
-uvoz_1$Vrednost <- as.factor(uvoz_1$Vrednost)
 
+
+#popravki v zadnjem stolpcu
+uvoz_1$Vrednost <- gsub(",", ".", uvoz_1$Vrednost)
+uvoz_1$Vrednost <- gsub(":", NA, uvoz_1$Vrednost)
+uvoz_1$Vrednost <- as.numeric(uvoz_1$Vrednost)
 
 
 
@@ -59,7 +63,6 @@ uvoz_2$Višjesolska_ali_visokosolska <- as.numeric(uvoz_2$Višjesolska_ali_visok
 uvoz_3 <- read_xlsx("podatki/3.tabela1.xlsx", 
                     col_names= c("Trajanje", "Spol", "Leto", "Vzhodna_Slovenija", "Zahodna_Slovenija"),
                     skip = 4,
-                    str_replace_all(uvoz_3["Trajanje"], "\\.+", ""),
                     na="N")  %>%
                     fill(1:2)
                     
