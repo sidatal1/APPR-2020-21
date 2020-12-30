@@ -36,7 +36,7 @@ uvoz_2 <- read_xlsx("podatki/2.tabela.xlsx",
                     col_names = c("Leto", "Regija", "Spol", "Brez_izobrazbe", "5",
                                   "Osnovnosolska", "7", "Nizja_ali_srednja_poklicna",
                                   "9", "Srednja_strokovna, splosna", "11",
-                                  "Višjesolska_ali_visokosolska", "13"),
+                                  "Visjesolska_ali_visokosolska", "13"),
                     na = "N",
                     skip = 4,
                     n_max = 48) %>%
@@ -52,7 +52,7 @@ uvoz_2$Brez_izobrazbe <- as.numeric(uvoz_2$Brez_izobrazbe)
 uvoz_2$Osnovnosolska <- as.numeric(uvoz_2$Osnovnosolska)
 uvoz_2$Nizja_ali_srednja_poklicna <- as.numeric(uvoz_2$Nizja_ali_srednja_poklicna)
 uvoz_2$`Srednja_strokovna, splosna` <- as.numeric(uvoz_2$`Srednja_strokovna, splosna`)
-uvoz_2$Višjesolska_ali_visokosolska <- as.numeric(uvoz_2$Višjesolska_ali_visokosolska)
+uvoz_2$Visjesolska_ali_visokosolska <- as.numeric(uvoz_2$Visjesolska_ali_visokosolska)
 
 
 
