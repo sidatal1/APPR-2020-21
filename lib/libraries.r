@@ -14,6 +14,9 @@ require(httr)
 library(gsubfn)
 library(tidyverse)
 library(stringr)
+require(ggplot2)
+require(dplyr)
+
 
 
 options(gsubfn.engine="R")

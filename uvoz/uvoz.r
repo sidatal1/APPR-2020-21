@@ -11,15 +11,19 @@ uvoz_1 <- read_csv("podatki/1.tabela1.csv",
                    separate("Leto1", c("Leto", "Drzava"), ",")  %>% 
                    select(-Starost, -Enota) %>%
                    mutate(Vrednost = as.factor(gsub('"',"", Vrednost))) %>%
-                   mutate(Drzava = as.character(gsub('"',"", Drzava)))
+                   mutate(Drzava = as.character(gsub('"',"", Drzava))) 
                             
 
                  
 uvoz_1$Leto <- as.integer(uvoz_1$Leto) 
-uvoz_1$Drzava <- as.factor(uvoz_1$Drzava) 
+uvoz_1$Drzava <- as.character(uvoz_1$Drzava) 
 uvoz_1$Spol <- as.factor(uvoz_1$Spol) 
 uvoz_1$Izobrazba <- as.factor(uvoz_1$Izobrazba)
 
+#malo lepša imena držav
+uvoz_1$Drzava[uvoz_1$Drzava == "Germany (until 1990 former territory of the FRG)"] <- "Germany"
+uvoz_1$Drzava[uvoz_1$Drzava == "France (metropolitan)"] <- "France"
+uvoz_1$Drzava[uvoz_1$Drzava == "North Macedonia"] <- "Macedonia"
 
 #popravki v zadnjem stolpcu
 uvoz_1$Vrednost <- gsub(",", ".", uvoz_1$Vrednost)
@@ -27,6 +31,35 @@ uvoz_1$Vrednost <- gsub(":", NA, uvoz_1$Vrednost)
 uvoz_1$Vrednost <- as.numeric(uvoz_1$Vrednost)
 
 
+
+#graf stopnje brezposelnosti glede na drzavo:
+
+uvoz_1 %>%
+  ggplot(aes(x= Vrednost, y= Drzava))+
+  geom_point(colour= "blue") +
+  labs(title= "Stopnja brezposelnosti po državah") +
+  ylab("Države") +
+  xlab("Stopnja brezposelnosti")
+
+#graf stopnje brezposelnosti po drzavah glede na izobrazbo
+
+uvoz_1 %>%
+  ggplot(aes(x= Vrednost, y= Drzava))+
+  geom_point() +
+  facet_wrap(Izobrazba~.)
+
+
+#graf stopnje brezposelnosti po drzavah glede na spol
+
+uvoz_1 %>%
+  ggplot(aes(x= Vrednost, y= Drzava))+
+  geom_point(col= "red") +
+  facet_grid(~Spol)
+
+#tabela stopnje brezposelnosti glede na spol
+
+brezposelnost.moski <- filter(uvoz_1, Spol == "Males")
+brezposelnost.zenske <- filter(uvoz_1, Spol == "Females")
 
 
 
@@ -55,8 +88,8 @@ uvoz_2$`Srednja_strokovna, splosna` <- as.numeric(uvoz_2$`Srednja_strokovna, spl
 uvoz_2$Visjesolska_ali_visokosolska <- as.numeric(uvoz_2$Visjesolska_ali_visokosolska)
 
 
-
-
+brezposelnost_2008 <- filter(uvoz_2, Leto == 2008)
+brezposelnost_2019 <- filter(uvoz_2, Leto == 2019)
  
 # 3.tabela
 
