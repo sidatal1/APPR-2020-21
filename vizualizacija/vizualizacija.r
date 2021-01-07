@@ -15,9 +15,19 @@
 #  summarise(povprecje=sum(velikost.druzine * stevilo.druzin) / sum(stevilo.druzin))
 
 
+#zemljevid Evrope
+svet <- map_data("world")
+svet %>%
+  ggplot(aes(x=long, y=lat, group= group, fill = region))+
+  geom_polygon()+
+  coord_cartesian(xlim = c(-24, 50), ylim = c(30, 71))+
+  labs(title="Svet")+
+  theme(legend.position = "none")
 
 
+
+#zemljevid Slovenije
 zemljevid.slo <- uvozi.zemljevid("https://biogeo.ucdavis.edu/data/gadm3.6/shp/gadm36_SVN_shp.zip",
-                                 "gadm36_SVN_1", encoding = "UTF-8")
+                                 "gadm36_SVN_0", encoding = "UTF-8")
 
-tm_shape(zemljevid.slo) + tm_polygons("NAME_1")
+tm_shape(zemljevid.slo) + geom_polygon("NAME_0") + theme(legend.position = "none")
