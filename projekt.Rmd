@@ -26,37 +26,37 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 Pri projektni nalogi bom primerjala stopnjo brezposelnosti od leta 2008 do leta 2019 v Sloveniji in ostalih evropskih državah glede na spol in stopnjo izobrazbe, starostna doba bo pa privzeta, med 20. in 64. letom. Pogledala bom, kako je v Sloveniji na stopnjo brezposelnosti vplivala stopnja izobrazbe ter kolikšna je brezposelnost glede na čas trajanja iskanja dela.
 
-Tabela 1: Stopnja brezposelnosti v evropskih državah
+TABELA 1: Stopnja brezposelnosti v evropskih državah
 
-* leto
-* država
-* spol
-* stopnja izobazbe
-* stopnja brezposelnosti
-
-
-Tabela 2: Stopnja brezposelnosti glede na stopnjo izobrazbe
-
-* leto
-* kohezijska regija
-* stopnja izobrazbe
-* spol
-* stopnja brezposelnosti
+ * leto
+ * država
+ * spol
+ * stopnja izobazbe
+ * stopnja brezposelnosti
 
 
-Tabela 3: Stopnja brezposelnosti glede na čas iskanja zaposlitve
+TABELA 2: Stopnja brezposelnosti glede na stopnjo izobrazbe
 
-* leto
-* kohezijska regija
-* spol
-* čas trajanja iskanja dela
-* stopnja brezposelnosti
+- leto
+- kohezijska regija
+- stopnja izobrazbe
+- spol
+- stopnja brezposelnosti
+
+
+TABELA 3: Stopnja brezposelnosti glede na čas iskanja zaposlitve
+
+- leto
+- kohezijska regija
+- spol
+- čas trajanja iskanja dela
+- stopnja brezposelnosti
 
 VIRI:
 
-* https://appsso.eurostat.ec.europa.eu/nui/submitViewTableAction.do
-* https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0762112S.px/table/tableViewLayout2/
-* https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0762111S.px/table/tableViewLayout2/
+- https://appsso.eurostat.ec.europa.eu/nui/submitViewTableAction.do
+- https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0762112S.px/table/tableViewLayout2/
+- https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0762111S.px/table/tableViewLayout2/
 
 ![](slike/prosta-delovna-mesta.jpg)
 
@@ -71,12 +71,8 @@ source("uvoz/uvoz.r", encoding="UTF-8")
 Uvozila sem podatke o stopnji brezposelnosti glede na stopnjo izobrazbe po evropskih državah v obliki CSV z Eurostata ter podatke o stopnji brezposelnosti glede na trajanje brezposelnosti in stopnjo izobrazbe v Sloveniji v obliki XLSL s statističnega urada Slovenije (SiStat).
 Podatke imam v treh razpredelnicah v obliki *tidy data*.
 
-Spodnji graf prikazuje porazdelitev števila naselij v občinah.
 
-```{r histogram, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
-ggplot(obcine, aes(x=naselja)) + geom_histogram() +
-  ggtitle("Pogostost števila naselij") + xlab("Število naselij") + ylab("Število občin")
-```
+
 
 ***
 

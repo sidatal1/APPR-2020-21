@@ -53,28 +53,27 @@ uvoz_1 %>%
 
 uvoz_1 %>%
   ggplot(aes(x= Vrednost, y= Drzava))+
-  geom_point(col= "red") +
+  geom_point(col= "blue") +
   facet_grid(~Spol)
 
-#tabela stopnje brezposelnosti glede na spol
-
-brezposelnost.moski <- filter(uvoz_1, Spol == "Males")
-brezposelnost.zenske <- filter(uvoz_1, Spol == "Females")
 
 
-
-# 2.tabela
+ # 2.tabela
  
 uvoz_2 <- read_xlsx("podatki/2.tabela.xlsx",
-                    col_names = c("Leto", "Regija", "Spol", "Brez_izobrazbe", "5",
+                    col_names = c("Leto", "Regija", "Spol", "4", "5",
                                   "Osnovnosolska", "7", "Nizja_ali_srednja_poklicna",
                                   "9", "Srednja_strokovna, splosna", "11",
                                   "Visjesolska_ali_visokosolska", "13"),
                     na = "N",
                     skip = 4,
                     n_max = 48) %>%
-                    select(-5,-7,-9,-11,-13) %>%
-                    fill(1:2)
+                    select(-4,-5,-7,-9,-11,-13) %>%
+                    fill(1:2) %>%
+                    pivot_longer(cols = c("Osnovnosolska", "Nizja_ali_srednja_poklicna",
+                                          "Srednja_strokovna, splosna", "Visjesolska_ali_visokosolska"),
+                                 names_to = "Izobrazba",
+                                 values_to = "StopnjaBrezposelnosti" )
 
 
 
@@ -88,8 +87,13 @@ uvoz_2$`Srednja_strokovna, splosna` <- as.numeric(uvoz_2$`Srednja_strokovna, spl
 uvoz_2$Visjesolska_ali_visokosolska <- as.numeric(uvoz_2$Visjesolska_ali_visokosolska)
 
 
-brezposelnost_2008 <- filter(uvoz_2, Leto == 2008)
-brezposelnost_2019 <- filter(uvoz_2, Leto == 2019)
+#brezposelnost_2008 <- filter(uvoz_2, Leto == 2008)
+#brezposelnost_2019 <- filter(uvoz_2, Leto == 2019)
+
+#graf brezposelnosti z osnovnosolsko izobrazbo glede na spol po regijah
+uvoz_2 %>% 
+  ggplot(aes(x=Spol, y=Osnovnosolska, col= Regija))+
+  geom_point()
  
 # 3.tabela
 
@@ -113,9 +117,51 @@ uvoz_3$Trajanje <- gsub("[[:punct:]]", "", uvoz_3$Trajanje)
 
 
 
+#RAČUNANJE
 
-                                                 
-    
+uvoz_1 %>% arrange(Spol, desc(Vrednost)) %>% View
 
+#tabela stopnje brezposelnosti glede na spol
+
+brezposelnost.moski <- filter(uvoz_1, Spol == "Males")
+brezposelnost.zenske <- filter(uvoz_1, Spol == "Females")   
+ 
+#1.
+#povprecna vrednost po spolu in drzavi 
+
+povprecna_vrednost <- uvoz_1 %>% 
+  group_by(Spol,Drzava, Leto) %>% 
+  summarize(VrednostMediane=median(Vrednost, na.rm=TRUE)) %>% 
+  group_by(Spol, Drzava) %>%
+  summarize(Povprecje= mean(VrednostMediane, na.rm=TRUE))  %>% arrange(Drzava) %>%
+  pivot_wider(names_from = Spol, values_from= Povprecje) %>%  View
+
+
+#max vrednost glede na izobrazbo po drzavah v letih 2008 in 2019
+
+maksimalna_vrednost2008 <- uvoz_1 %>%
+  filter(Leto== "2008") %>%
+  group_by(Izobrazba, Spol) %>%
+  summarize(maks2008=max(Vrednost, na.rm=TRUE)) %>% 
+  pivot_wider(names_from = Spol, values_from= maks2008) %>% View
+  
+maksimalna_vrednost2019 <- uvoz_1 %>%
+  filter(Leto== "2019") %>%
+  group_by(Izobrazba, Spol) %>%
+  summarize(maks2019=max(Vrednost, na.rm=TRUE)) %>% 
+  pivot_wider(names_from = Spol, values_from= maks2019) %>% View
+
+#2.
+
+#povprecna vrednost glede na izobrazbo in spol po regijah-slo
+
+
+neki <- uvoz_2 %>%
+  group_by(Izobrazba, Regija, Spol) %>%
+  summarize(povprecje= mean(StopnjaBrezposelnosti)) %>% View
+
+
+
+  
 
 
