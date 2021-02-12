@@ -40,26 +40,9 @@ uvoz_2 <- read_xlsx("podatki/2.tabela.xlsx",
                                           "Srednja,splosna", "Vss"),
                                  names_to = "Izobrazba",
                                  values_to = "Stopnja_brezposelnosti" ) %>%
-                    mutate(Leto = as.integer(Leto),)
+                    mutate(Leto = as.integer(Leto))
 
-
- 
-# 3.tabela
-
-uvoz_3 <- read_xlsx("podatki/3.tabela1.xlsx", 
-                    col_names= c("Trajanje", "Spol", "Leto", "Vzhodna_Slovenija", "Zahodna_Slovenija"),
-                    skip = 4,
-                    na= "N")  %>%
-                    fill(1:2) %>%
-                    mutate("Trajanje" = as.character(gsub('\\.*',"", Trajanje)),
-                           "Leto" = as.integer(Leto)) %>%
-                    pivot_longer(cols= c("Zahodna_Slovenija", "Vzhodna_Slovenija"),
-                                 names_to = "Kohezijska_regija",
-                                 values_to = "Stopnja_brezposelnosti" )
-                   
-
-
-
+#3.tabela
 
 uvoz_4 <- read_xlsx("podatki/TABELA4.xlsx",
                     skip = 1,
@@ -70,7 +53,9 @@ uvoz_4 <- read_xlsx("podatki/TABELA4.xlsx",
                        "Osrednjeslovenska", "Gorenjska",
                        "Primorsko-notranjska", "Goriška", "Obalno-kraška"),
                     names_to = "regija",
-                    values_to = "Stopnja_brezposelnosti" )
+                    values_to = "Stopnja_brezposelnosti" ) %>%
+                    mutate(...1 = as.integer(...1))
+                    
                     
 names(uvoz_4)[1] <- "Leto"
 uvoz_4$regija[uvoz_4$regija == "Posavska"] <- "Spodnjeposavska"
