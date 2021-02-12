@@ -50,7 +50,7 @@ tabela2 %>%
                                       'OS' = "OŠ",
                                       'Srednja,splosna' = "Srednja, splošna",
                                       'Vss' = "VSŠ")), ncol=4) +
-  labs(title="Povprečna st. brezposelnosti glede na izobrazbo po regijah") +
+  labs(title="Povprečna stopnja brezposelnosti glede na \n izobrazbo po regijah") +
   ylab("Povprečna vrednost") + 
   theme(panel.background = element_rect((fill="lightyellow")), axis.text= element_text(size=7), 
         text= element_text(size=10), strip.background =element_rect(fill="white"), 
