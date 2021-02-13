@@ -24,39 +24,10 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 # Izbira teme
 
-Pri projektni nalogi bom primerjala stopnjo brezposelnosti od leta 2008 do leta 2019 v Sloveniji in ostalih evropskih državah glede na spol in stopnjo izobrazbe, starostna doba bo pa privzeta, med 20. in 64. letom. Pogledala bom, kako je v Sloveniji na stopnjo brezposelnosti vplivala stopnja izobrazbe ter kolikšna je brezposelnost glede na čas trajanja iskanja dela.
+Pri projektni nalogi bom primerjala stopnjo brezposelnosti od leta 2008 do leta 2019 v Sloveniji in ostalih evropskih državah glede na spol in stopnjo izobrazbe, starostna doba bo pa privzeta, med 20. in 64. letom. Pogledala bom, kako je v Sloveniji na stopnjo brezposelnosti vplivala stopnja izobrazbe ter kako se razlikuje brezposelnost glede na statistično regijo .
+\
+\
 
-TABELA 1: Stopnja brezposelnosti v evropskih državah
-
- * leto
- * država
- * spol
- * stopnja izobazbe
- * stopnja brezposelnosti
-
-
-TABELA 2: Stopnja brezposelnosti glede na stopnjo izobrazbe
-
-- leto
-- kohezijska regija
-- stopnja izobrazbe
-- spol
-- stopnja brezposelnosti
-
-
-TABELA 3: Stopnja brezposelnosti glede na čas iskanja zaposlitve
-
-- leto
-- kohezijska regija
-- spol
-- čas trajanja iskanja dela
-- stopnja brezposelnosti
-
-VIRI:
-
-- https://appsso.eurostat.ec.europa.eu/nui/submitViewTableAction.do
-- https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0762112S.px/table/tableViewLayout2/
-- https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0762111S.px/table/tableViewLayout2/
 
 ![](slike/prosta-delovna-mesta.jpg)
 
@@ -68,27 +39,80 @@ VIRI:
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Uvozila sem podatke o stopnji brezposelnosti glede na stopnjo izobrazbe po evropskih državah v obliki CSV z Eurostata ter podatke o stopnji brezposelnosti glede na trajanje brezposelnosti in stopnjo izobrazbe v Sloveniji v obliki XLSL s statističnega urada Slovenije (SiStat).
-Podatke imam v treh razpredelnicah v obliki *tidy data*.
+Uvozila sem podatke o stopnji brezposelnosti glede na stopnjo izobrazbe po evropskih državah v obliki CSV z Eurostata ter podatke o stopnji brezposelnosti glede na statistično regijo in stopnjo izobrazbe glede na kohezijsko regijo obliki XLSL s statističnega urada Slovenije (SiStat).
+Podatke imam v treh razpredelnicah v obliki *tidy data*. 
+\
 
+1. **Tabela 1** - podatki o % brezposelnih po evropskih državah
+    - `Leto` - spremenljivka (celo število)
+    - `Država` - spremenljivka (niz)
+    - `Spol` - spremenljivka (niz)
+    - `Stopnja izobrazbe` - spremenljivka (niz)
+    - `Stopnja brezposelnosti` - meritev (število) 
+\    
+2. **Tabela 2** - podatki o stopnji brezposelnosti po kohezijskih regijah
+    - `Leto` - spremenljivka (celo število)
+    - `Kohezijska regija` - spremenljivka (niz)
+    - `Spol` - spremenljivka (niz)
+    - `Stopnja izobrazbe` - spremenljivka (niz)
+    - `Stopnja brezposelnosti` - meritev (število) 
+\
+3. **Tabela 3** - podatki o % brezposelnih po statističnih regijah
+    - `Leto` - spremenljivka (celo število)
+    - `Statistična regija` - spremenljivka (niz)
+    - `Stopnja brezposelnosti` - meritev (število)
+    
 
-
+**Opomba**: Da sem tabele pretvorila v obliko *tidy data* sem pri vseh treh morala odstraniti par nepotrebnih stolpcev, pri prvi sem skrajšala imena treh držav, pri drugi in tretji pa preoblikovala nekatere stolpce z istim podatkom v enega.
 
 ***
 
 # Analiza in vizualizacija podatkov
 
+
 ```{r vizualizacija, results='hide'}
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
+Spodnji graf prikazuje povprečno stopnjo bresposelnosti v evropskih državah glede na stopnjo izobrazbe. Opazimo, da je brezposelnost dokaj nizka za tiste s srednješolsko izobrazbo, kar je tudi pričakovano, saj je veliko poklicev, ki ustrezajo tej izobrazbi, in dokaj visoka za tiste z vsaj univerzitetno izobrazbo.
+Zanimivo je, da imajo Združeno kraljestvo, Švica, Švedska, Norveška, Nizozemska, Irska, Francija in Belgija skoraj enakomerno porazdeljene vrednosti brezposelnosti po izobrazbah.
+\
 
-```{r zemljevid, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
-tm_shape(merge(zemljevid, povprecja, by.x="OB_UIME", by.y="obcina")) +
-  tm_polygons("povprecje", title="Povprečje") +
-  tm_layout(title="Povprečno število otrok v družini")
+```{r viz1, fig.align = 'center'}
+
+viz1
+
 ```
+\
+Na temu grafu pa je prikazana odvisnost povprečne brezposelnosti glede na spol. Prej naštete države, ki imajo približno enako porazdeljene vrednosti po izobrazbi, imajo sedaj manjše razlike v vrednostih po spolu. Menim, da to predstavlja stabilne države, ki podpirajo enakopravnost. Seveda pa to ni nujno res. 
+\
+
+```{r viz2, fig.align = 'center' }
+
+viz2
+
+```
+\
+
+Na naslednjem grafu je predstavljena povprečna stopnja brezposelnosti glede na izobrazbo in spol po kohezijskih regijah v Sloveniji. Opazimo, da je stopnja brezposelnosti pada s stopnjo izobrazbe, torej najnižja je pri VSŠ izobrazbi, najvišja pa pri osnovnošolski. Vidimo tudi, da je brezposelnot žensk nekoliko višja kot pri moških. 
+\
+
+```{r viz3, fig.align = 'center' }
+
+viz3
+
+```
+\
+
+Na zemljevidu pa je prikazana povprečna stopnja brezposelnosti po statističnih regijah.
+Najnižja brezposelnost je na območju Osrednjeslovenske, Gorenjske ter Notranjsko-kraške regije. 
+\
+```{r zemljevid1, fig.align = 'center'}
+
+zemljevid1
+
+```
+
 
 ***
 
@@ -97,21 +121,40 @@ tm_shape(merge(zemljevid, povprecja, by.x="OB_UIME", by.y="obcina")) +
 ```{r analiza}
 source("analiza/analiza.r", encoding="UTF-8")
 ```
+\
+Na spodnjem grafu je prikazana odvisnost stopnje brezposelnosti po letih za vsako statistično regijo posebej. Do približno leta 2013 je brezposelnost naraščala, potem pa je začela padati. Razlog za naraščanje od 2008 do 2013 je najverjetneje povzročila tedanja svetovna finančno-gospodarska kriza, potem pa si je država opomogla in začelo je padanje brezposelnosti. 
+\
 
-Spodnji graf prikazuje povezavo med številom naselij in površino občine.
+```{r analiza1, fig.align = 'center' }
 
-```{r graf, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
-ggplot(inner_join(obcine, data.frame(obcina=names(skupine),
-                                     skupina=factor(skupine)), by="obcina")
-, aes(x=povrsina, y=naselja, color=skupina, size=prebivalci/1000)) + geom_point() +
-  ggtitle("Število naselij glede na površino občine") +
-  xlab(expression("Površina (km"^2 * ")")) + ylab("Št. naselij") +
-  guides(color=guide_legend(title="Skupina"),
-         size=guide_legend(title="Prebivalci (* 1000)"))
+analiza1
+
+```
+\
+Spodaj pa vidimo še zgornje podatke združene v en graf. 
+\
+
+```{r analiza2, fig.align = 'center' }
+
+analiza2
+
+```
+\
+Na naslednjem grafu je prikazana napoved za Turčijo, in sicer kako se bo stopnja brezposelnosti spreminjala do leta 2030.
+\
+
+```{r graf_napoved, fig.align = 'center' }
+
+graf_napoved
+
 ```
 
-***
 
+
+***
+#Shiny
+
+\
 ```{r shiny}
 shinyAppDir("shiny", options=list(width="100%", height=600))
 ```
