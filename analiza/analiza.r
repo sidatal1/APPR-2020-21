@@ -18,7 +18,7 @@ graf_napoved <- napoved %>%
   geom_point(size=1, color="blue") +
   scale_x_continuous('Leto', breaks = seq(2008, 2030, 3)) +
   ylab("Stopnja brezposelnosti") +
-  labs(title = "Napoved stopnje brezposelnosti \n za Turčijo do leta 2030")
+  labs(title = "Napoved stopnje brezposelnosti za Turčijo do leta 2030")
 graf_napoved
 
 
@@ -31,7 +31,19 @@ analiza1 <- ggplot(uvoz_4, aes(x=Leto, y=Stopnja_brezposelnosti)) +
   scale_x_continuous("Leto",  breaks = seq(2008, 2019, 5)) +
   theme(panel.background = element_rect((fill="white")), axis.text= element_text(size=6), 
         text= element_text(size=10), strip.background =element_rect(fill="white"), 
-        strip.text.x = element_text(size = 4)) +
-  labs("Analiza % brezposelnosti po regijah") +
-  ylab("% brezposelnosti")
+        strip.text.x = element_text(size = 9)) +
+  labs("Analiza stopnje brezposelnosti po regijah") +
+  ylab("Stopnja brezposelnosti")
 analiza1
+
+
+
+analiza2 <- ggplot(uvoz_4, aes(x=Leto, y=Stopnja_brezposelnosti)) +
+  geom_point(size=1, col="blue") +
+  geom_smooth(method="loess", formula= y~x, color="deeppink", size=0.2) +
+  scale_x_continuous("Leto",  breaks = seq(2008, 2019, 3)) +
+  theme(panel.background = element_rect((fill="white")), axis.text= element_text(size=6), 
+        text= element_text(size=10)) +
+  labs("Analiza brezposelnosti po regijah") +
+  ylab("Stopnja brezposelnosti")
+analiza2
