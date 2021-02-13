@@ -45,10 +45,8 @@ viz3 <- tabela2 %>%
   scale_color_manual(values = c("blue", "red")) +
   scale_x_discrete(labels=c("Vzhodna Slovenija" = "VS", "Zahodna Slovenija" = "ZS"))+
   geom_point(size=3) +
-  facet_wrap(~Izobrazba, labeller = as_labeller(c('Nizja poklicna' = "Nižja poklicna",
-                                      'OS' = "OŠ",
-                                      'Srednja,splosna' = "Srednja, splošna",
-                                      'Vss' = "VSŠ")), ncol=4) +
+  facet_grid(~factor(Izobrazba, levels= c("OS", "Nizja poklicna", "Srednja,splosna", "Vss"),
+                     labels = c("OŠ", "Nižja poklicna", "Srednja, splošna", "VSŠ"), ordered = TRUE)) +
   labs(title="Povprečna stopnja brezposelnosti glede na izobrazbo po regijah") +
   ylab("Povprečna vrednost") + 
   theme(panel.background = element_rect((fill="lightyellow")), axis.text= element_text(size=7), 

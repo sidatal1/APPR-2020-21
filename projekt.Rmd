@@ -152,7 +152,7 @@ graf_napoved
 
 
 ***
-#Shiny
+# Shiny
 
 \
 ```{r shiny}

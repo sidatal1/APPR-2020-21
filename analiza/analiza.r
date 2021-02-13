@@ -4,18 +4,17 @@ theme_set(theme_bw())
 
 #napoved Turcija
 podatki <- uvoz_1 %>%
-  filter(Drzava== "Turkey") %>%
-  group_by(Leto, Spol) %>%
-  summarize(vrednost = round(mean(Vrednost), digits=2)) 
+  filter(Drzava == "Turkey", Spol == "Males", 
+         Izobrazba == "Upper secondary and post-secondary non-tertiary education (levels 3 and 4)") 
 
-model <- loess(data=podatki, vrednost ~ Leto, control = loess.control(surface = "direct"))
-leto <- data.frame(Leto=seq(2008,2030,1))
-napoved <- mutate(leto, vrednost = predict(model, leto))
+model <- lm(data = podatki, Vrednost ~ Leto)
+leto <- data.frame(Leto = 2020:2030)
+napoved <- mutate(leto, Vrednost = predict(model, leto))
 
 graf_napoved <- napoved %>%
-  ggplot(aes(x=Leto, y=vrednost)) +
-  geom_smooth(method="loess", fullrange=TRUE, color="red", formula=y ~ x) +
-  geom_point(size=1, color="blue") +
+  ggplot(aes(x = Leto, y = Vrednost)) +
+  geom_smooth(method  = "lm", fullrange = TRUE, color = "red", formula = y ~ x) +
+  geom_point(size = 1, color = "blue") +
   scale_x_continuous('Leto', breaks = seq(2008, 2030, 3)) +
   ylab("Stopnja brezposelnosti") +
   labs(title = "Napoved stopnje brezposelnosti za Turčijo do leta 2030")
