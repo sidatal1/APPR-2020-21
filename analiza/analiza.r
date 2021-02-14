@@ -3,22 +3,27 @@
 theme_set(theme_bw())
 
 #napoved Turcija
+
 podatki <- uvoz_1 %>%
   filter(Drzava == "Turkey", Spol == "Males", 
          Izobrazba == "Upper secondary and post-secondary non-tertiary education (levels 3 and 4)") 
 
+graf1 <- ggplot(podatki, aes(x=Leto, y= Vrednost)) + geom_point(color="black")
 model <- lm(data = podatki, Vrednost ~ Leto)
-leto <- data.frame(Leto = 2020:2030)
-napoved <- mutate(leto, Vrednost = predict(model, leto))
+graf2 = graf1 + geom_smooth(method = "lm", fullrange=TRUE, formula = y~x)
+nova <- data.frame(Leto = 2008:2030)
+napoved <- mutate(nova, Vrednost=predict(model, nova))
 
-graf_napoved <- napoved %>%
-  ggplot(aes(x = Leto, y = Vrednost)) +
-  geom_smooth(method  = "lm", fullrange = TRUE, color = "red", formula = y ~ x) +
-  geom_point(size = 1, color = "blue") +
+
+graf_napoved <- graf2 +  geom_point(data=napoved,aes(x=Leto,y= Vrednost), size = 1, color = "blue") +
   scale_x_continuous('Leto', breaks = seq(2008, 2030, 3)) +
   ylab("Stopnja brezposelnosti") +
-  labs(title = "Napoved stopnje brezposelnosti za Turčijo do leta 2030")
+  labs(title = "Napoved stopnje brezposelnosti v Turčiji za moške s srednjo izobrazbo do \n leta 2030")
 graf_napoved
+
+
+
+
 
 
 #analiza Slovenija
